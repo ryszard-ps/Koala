@@ -1,8 +1,14 @@
 <?php
 /**
+*
 * Descarga de archivos *.xml
+*
+* @author Ricardo Pascual
+* @author https://github.com/Ryszardp
+*
 **/
-$permiso = $usuarios[$_SESSION['app_id']]['permiso_tmp'];
+
+$permiso = $_SESSION['usuario']['permiso_tmp'];
 
 if (!isset($_POST['archivo']) || empty($_POST['archivo'])) {
    exit();

@@ -1,13 +1,29 @@
 <?php
+/**
+*Muestra la actividad de los archivos de nomina
+*
+* @author Ricardo Pascual
+* @author https://github.com/Ryszardp
+*
+**/
+
 class Bitacora{
-  function crearFila($contexto){
-    if($contexto['visto']==1){
+
+  /**
+  * @access private
+  * @param array datos del archivo generales xml
+  * @return String
+  * a esta función solo la podemos acceder desde la propia clase
+  * Devolvemos codigo html
+  **/
+  private function crearFila($contexto) {
+    if($contexto['visto'] == 1) {
       $visto=$contexto['fecha_visto'];
     } else {
       $visto = '<span class="glyphicon glyphicon-remove"></span>';
     }
 
-    if($contexto['descargado']==1){
+    if($contexto['descargado'] == 1) {
       $descarga=$contexto['fecha_descarga'];
     } else {
       $descarga = '<span class="glyphicon glyphicon-remove"></span>';
@@ -21,9 +37,16 @@ class Bitacora{
          '<td class="text-center">',$descarga,'</td></tr>';
   }
 
-  function mostrarBitacora($rfc, $permiso){
+  /**
+  * @access public
+  * @param String, string
+  * rfc del empleado de sesión y su respectivo permiso
+  * @return String
+  * si existiera algún tipo de error o en su defecto crea la fila
+  **/
+  public function mostrarBitacora($rfc, $permiso) {
     $datos = new Conexion();
-    if($permiso==0){
+    if($permiso == 0){
       $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_receptor='$rfc';");
       if($datos->filas($sql)>0){
         $archivos = "";
@@ -33,7 +56,7 @@ class Bitacora{
       } else {
         echo'<div class="alert alert-info" role="alert"><strong>No existen archivos</strong>, Actualmente.</div>';
       }
-    } else if ($permiso==1) {
+    } else if ($permiso == 1) {
       $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc';");
       if($datos->filas($sql)>0){
       $archivos = "";
@@ -43,7 +66,6 @@ class Bitacora{
       } else {
         echo'<div class="alert alert-info" role="alert"><strong>No existen archivos</strong>, Actualmente.</div>';
       }
-
     } else{
         $sql = $datos->query("SELECT * FROM archivo_empleado;");
         if($datos->filas($sql)>0){
@@ -57,8 +79,6 @@ class Bitacora{
     }
     $datos->liberar($sql);
     $datos->close();
-    #return $archivos;
   }
 }
-
- ?>
+?>

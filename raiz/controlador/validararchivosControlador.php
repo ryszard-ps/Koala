@@ -1,6 +1,11 @@
 <?php
 /**
+*
 * Incluye la vista asociada a la petición de validararchivos
+*
+* @author Ricardo Pascual
+* @author https://github.com/Ryszardp
+*
 **/
 require(HTML_DIR . 'global/cabecera.php');
 if(!isset($_SESSION['usuario'])){

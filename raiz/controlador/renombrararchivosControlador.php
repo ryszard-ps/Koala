@@ -1,10 +1,15 @@
 <?php
 /**
 * Incluye la vista asociada a la petición de renombrararchivos
+*
+*
+* @author Ricardo Pascual
+* @author https://github.com/Ryszardp
+*
 **/
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //llamamos a la clase MultiplesArchivos
-    require('raiz/logica/funcion/MultiplesArchivos.php');
+    require('raiz/logica/funcion/ArchivosTemporales.php');
   }
 
 require(HTML_DIR . 'global/cabecera.php');
@@ -25,5 +30,4 @@ require(HTML_DIR . 'global/cabecera.php');
   }
 
 require(HTML_DIR . 'global/pie.php');
-
  ?>

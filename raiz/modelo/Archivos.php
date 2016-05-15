@@ -1,5 +1,19 @@
 <?php
+/**
+* Guarda los registros de un archivo de nomina en la bd
+*
+* @author Ricardo Pascual
+* @author https://github.com/Ryszardp
+*
+**/
+
 class Archivos{
+  /**
+  * @access public
+  * @param String,String,String,String,String,String,String,String,String,String
+  * recibe los datos generales del archivo xml para guardarlos en la bd
+  *
+  **/
   public function guardarArchivos($usuario,$receptor_rfc,$sueldo,$fecha_fin,$uuid,$receptor_nombre,$ss,$curp,$puesto,$dpto){
     $datos_empleado = explode(" ", $receptor_nombre);
     $nombre="";

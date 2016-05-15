@@ -1,15 +1,23 @@
 <?php
-class LeerArchivos{
+/**
+*leer archivos al servidor
+*
+* @author Ricardo Pascual
+* @author https://github.com/Ryszardp
+*
+**/
 
-  /**
-  *leer archivos al servidor
-  *@access public
-  *@param string $rfc usuario para mostrarle los arhivos correspondientes
-  */
+class LeerArchivos{
 
   const DIRECTORIO = 'temporal';
   const DIRECTORIO_A='archivos';
-
+  /**
+  * @access public
+  * @param String
+  * @return String
+  * rfc del usuario de sesión actual
+  * devolvemos codigo HTML
+  **/
   public function archivosTemporales($usuario){
     if(is_dir("temporal/")){
       $array_directorio = array_diff(scandir(self::DIRECTORIO), array('..', '.'));
@@ -26,7 +34,15 @@ class LeerArchivos{
     }
   }
 
-  public function renombrarArchivos($nombre_archivo,$usuario){
+  /**
+  * @access private
+  * @param  String, string
+  * nombre del archivo, rfc del usuario de sesión
+  * @return string
+  * devolvemos Codigo HTML
+  *
+  **/
+  private function renombrarArchivos($nombre_archivo,$usuario){
     $url = self::DIRECTORIO . '/' . $nombre_archivo;
     $xml_nuevo=self::DIRECTORIO_A.'/';
     $xml_actual = simplexml_load_file($url);
@@ -102,6 +118,7 @@ class LeerArchivos{
                     </div>
                   </div>
                 </div>';
+                //Llamamos a la clase Archivos para guardarlo en la bd
                 $nuevoArchivo = New Archivos();
                 $nuevoArchivo->guardarArchivos($usuario,$receptor_rfc,$sueldo,$fecha_fin,$uuid,$receptor_nombre,$ss,$curp,$puesto,$dpto);
         } else {

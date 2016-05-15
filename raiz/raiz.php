@@ -7,8 +7,6 @@
 * @author Ricardo Pascual
 * @author https://github.com/Ryszardp
 *
-* @package raiz.php
-*
 * Carga
 * Constantes de servidor
 * Constantes de directorios
@@ -34,4 +32,5 @@ define('URL_APP', 'http://localhost/Koala/');
 require('raiz/modelo/Conexion.php');
 require('raiz/modelo/Archivos.php');
 require('raiz/logica/funcion/LeerArchivos.php');
- ?>
+
+?>

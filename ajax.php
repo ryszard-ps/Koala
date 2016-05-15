@@ -6,8 +6,6 @@
 * @author Ricardo Pascual
 * @author https://github.com/Ryszardp
 *
-* @package ajax.php
-*
 * Verifica si el existe una petición por POST.
 *
 * si la variable $_GET['tipo'] existe es una petición por Ajax
@@ -32,7 +30,7 @@ if ($_POST) {
       header('location: index.php');
       break;
   }
-  
+
 } else {
   header('location: index.php');
 }

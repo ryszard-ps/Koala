@@ -7,8 +7,6 @@
 * @author Ricardo Pascual
 * @author https://github.com/Ryszardp
 *
-* @package index
-*
 * Verifica si el existe un controlador asociado al recurso buscado.
 *
 * si existe  incluye archivo *.php asociado al controlador, por defecto envia al inicio

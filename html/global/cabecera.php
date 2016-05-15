@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,14 +15,12 @@
     <!-- MetisMenu CSS -->
     <link href="vistas/css/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Timeline CSS
-    <link href="dist/css/timeline.css" rel="stylesheet">
-
-     Custom CSS -->
+    <!-- Custom CSS -->
     <link href="vistas/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
     <link href="vistas/css/morrisjs/morris.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="vistas/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -33,5 +30,4 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
