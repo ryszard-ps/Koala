@@ -31,11 +31,7 @@ define('COPY_APP', 'Copyright &copy' . date('Y', time()));
 define('URL_APP', 'http://localhost/Koala/');
 
 # constantes de funciones
-
-require('raiz/modelo/claseConexion.php');
-#require('raiz/logica/funcion/Usuarios.php');
-
-#require('raiz/logica/funciones/LeerArchivos.php');
-#require('raiz/logica/funciones/Archivos.php');
-#$usuarios = Usuarios();
+require('raiz/modelo/Conexion.php');
+require('raiz/modelo/Archivos.php');
+require('raiz/logica/funcion/LeerArchivos.php');
  ?>

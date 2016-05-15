@@ -10,10 +10,10 @@ if (!isset($_SESSION['usuario'])){
 } else {
   $tmp_permiso = $_SESSION['usuario']['permiso_tmp'];
 
-  if($tmp_permiso==0){
+  if ($tmp_permiso == 0) {
     require(HTML_DIR . '/global/nav_empleado.php');
     require(HTML_DIR . '/inicio/inicio.php');
-  } elseif ($tmp_permiso==1) {
+  } elseif ($tmp_permiso == 1) {
     require(HTML_DIR . '/global/nav_zona.php');
     require(HTML_DIR . '/inicio/inicio.php');
   } else {
