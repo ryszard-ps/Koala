@@ -15,7 +15,7 @@
 <!-- /.dropdown -->
 <li class="dropdown">
 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-<i class="fa fa-user fa-fw">  </i> <?php echo $usuarios[$_SESSION['app_id']]['nombres']," ",$usuarios[$_SESSION['app_id']]['apellido_p']; ?>  <i class="fa fa-caret-down"> </i>
+<i class="fa fa-user fa-fw">  </i> <?php echo $_SESSION['usuario']['nombres']," ",$_SESSION['usuario']['apellido_p'] ?> <i class="fa fa-caret-down"> </i>
 </a>
 <ul class="dropdown-menu dropdown-user">
 <li><a href="#"><i class="fa fa-user fa-fw"></i> Mi perfil</a>
