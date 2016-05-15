@@ -33,9 +33,8 @@ define('URL_APP', 'http://localhost/Koala/');
 # constantes de funciones
 
 require('raiz/modelos/claseConexion.php');
-require('raiz/logica/funciones/Usuarios.php');
+require('raiz/logica/funcion/Usuarios.php');
 #require('raiz/logica/funciones/LeerArchivos.php');
 #require('raiz/logica/funciones/Archivos.php');
 #$usuarios = Usuarios();
-
  ?>
