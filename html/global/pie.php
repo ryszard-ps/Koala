@@ -11,6 +11,6 @@
 <script src="vistas/css/metisMenu/dist/metisMenu.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="vistas/js/sb-admin-2.js"></script>
+<script src="vistas/js/navegacion.js"></script>
 
 </html>
