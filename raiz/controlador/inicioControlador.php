@@ -12,7 +12,7 @@ require('raiz/logica/funcion/Bitacora.php');
 require('raiz/logica/funcion/Estadisticas.php');
 
 if (!isset($_SESSION['usuario'])){
-  include(HTML_DIR . 'publico/autenticacion.html');
+  require(HTML_DIR . 'publico/autenticacion.html');
 } else {
   $estadistica = new Estadisticas();
   $tmp_permiso = $_SESSION['usuario']['permiso_tmp'];
