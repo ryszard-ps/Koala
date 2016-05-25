@@ -90,8 +90,11 @@ if ($documento=="pdf"){
   $dompdf=new DOMPDF();
   $dompdf->load_html($codigoHTML);
   ini_set("memory_limit","128M");
+  $dompdf->set_paper ('a4','landscape'); 
   $dompdf->render();
   $dompdf->stream($nombre);
+  #'portrait' or 'landscape'
+
 } else if($documento=="excel"){
   $nombre = "Reporte de ".$tabla.".xls";
   header("Content-Disposition: attachment; filename=".$nombre);

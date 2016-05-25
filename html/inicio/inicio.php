@@ -124,6 +124,8 @@
         </div>
       </div>
     </div>
-    <?php require(HTML_DIR . 'archivos/bitacora.php'); ?>
+    <?php
+      require(HTML_DIR . 'archivos/bitacora.php');
+     ?>
   </div>
 </body>

@@ -1,7 +1,12 @@
 <div class="row">
   <div class="col-lg-12">
     <h1 class="page-header">Reportes de Archivos </h1>
-      <?php require(HTML_DIR.'archivos/reportes.php'); ?>
+      <?php
+      $permiso = $_SESSION['usuario']['permiso_tmp'];
+      if($permiso == 2){
+        require(HTML_DIR.'archivos/reportes.php');
+      }
+      ?>
   </div>
 </div>
 </br>
