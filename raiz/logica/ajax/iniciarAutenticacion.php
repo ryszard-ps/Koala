@@ -15,7 +15,7 @@ if (!empty($_POST['usuario']) and !empty($_POST['clave'])) {
     $datos = new Conexion();
     $contexto = $datos->real_escape_string($_POST['usuario']);
     $clave = SHA1($_POST['clave']);
-    $sql = $datos->query("SELECT * FROM empleado WHERE rfc='$contexto' AND clave='$clave' LIMIT 1;");
+    $sql = $datos->query("SELECT * FROM empleado WHERE rfc='$contexto' AND clave='$clave' AND activo=1 LIMIT 1;");
 
     if ($datos->filas($sql)>0) {
       if ($_POST['sesion']) { ini_set('session.cookie_lifetime', time() + (60*60*24)); }
@@ -25,7 +25,6 @@ if (!empty($_POST['usuario']) and !empty($_POST['clave'])) {
             'nombres' => $contexto['nombres'],
             'apellido_p' => $contexto['apellido_p'],
             'rfc' => $contexto['rfc'],
-            'clave' => $contexto['clave'],
             'puesto' => $contexto['puesto'],
             'departamento' => $contexto['departamento'],
             'correo' => $contexto['correo'],

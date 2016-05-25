@@ -25,12 +25,10 @@ define('DB_NOMBRE', 'koala');
 # constantes directorios
 define('HTML_DIR','html/');
 define('TITULO_APP', '<  Koala />');
-define('COPY_APP', 'Copyright &copy' . date('Y', time()));
-define('URL_APP', 'http://localhost/Koala/');
+#define('COPY_APP', 'Copyright &copy' . date('Y', time()));
 
 # constantes de funciones
 require('raiz/modelo/Conexion.php');
 require('raiz/modelo/Archivos.php');
 require('raiz/logica/funcion/LeerArchivos.php');
-
 ?>

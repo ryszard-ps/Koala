@@ -1,6 +1,6 @@
 <?php
 /**
-*leer archivos al servidor
+*leer archivos del servidor
 *
 * @author Ricardo Pascual
 * @author https://github.com/Ryszardp
@@ -10,7 +10,7 @@
 class LeerArchivos{
 
   const DIRECTORIO = 'temporal';
-  const DIRECTORIO_A='archivos';
+  const DIRECTORIO_A = 'archivos';
   /**
   * @access public
   * @param String

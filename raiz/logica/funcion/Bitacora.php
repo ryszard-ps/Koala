@@ -27,10 +27,9 @@ class Bitacora{
       $descarga=$contexto['fecha_descarga'];
     } else {
       $descarga = '<span class="glyphicon glyphicon-remove"></span>';
-
     }
     //crearDetalle($contexto);
-    echo '<tr><td>',$contexto['rfc_receptor'],'</td>',
+    echo '<tr class="text-center"><td>',$contexto['rfc_receptor'],'</td>',
          '<td>',$contexto['nombre_xml'],'</td>',
          '<td>',$contexto['fecha_pago'],'</td>',
          '<td class="text-center">',$visto,'</td>',
@@ -44,10 +43,18 @@ class Bitacora{
   * @return String
   * si existiera algún tipo de error o en su defecto crea la fila
   **/
-  public function mostrarBitacora($rfc, $permiso) {
+  public function mostrarBitacora($rfc, $permiso, $peticion) {
     $datos = new Conexion();
     if($permiso == 0){
-      $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_receptor='$rfc';");
+      switch ($peticion) {
+        case 1:
+          $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_receptor='$rfc' ORDER BY  fecha_pago DESC LIMIT 20;");
+          break;
+
+        default:
+          $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_receptor='$rfc' ORDER BY  fecha_pago DESC;");
+          break;
+      }
       if($datos->filas($sql)>0){
         $archivos = "";
         while($contexto = $datos->recorrer($sql)){
@@ -57,7 +64,16 @@ class Bitacora{
         echo'<div class="alert alert-info" role="alert"><strong>No existen archivos</strong>, Actualmente.</div>';
       }
     } else if ($permiso == 1) {
-      $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc';");
+      switch ($peticion) {
+        case 1:
+          $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc' ORDER BY  fecha_pago DESC LIMIT 30;");
+          # code...
+          break;
+
+        default:
+          $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc' ORDER BY  fecha_pago DESC;");
+          break;
+      }
       if($datos->filas($sql)>0){
       $archivos = "";
         while($contexto = $datos->recorrer($sql)){
@@ -67,9 +83,19 @@ class Bitacora{
         echo'<div class="alert alert-info" role="alert"><strong>No existen archivos</strong>, Actualmente.</div>';
       }
     } else{
-        $sql = $datos->query("SELECT * FROM archivo_empleado;");
+        switch ($peticion) {
+          case 1:
+            $sql = $datos->query("SELECT * FROM archivo_empleado ORDER BY  fecha_pago DESC LIMIT 30;");
+            # code...
+            break;
+
+          default:
+            $sql = $datos->query("SELECT * FROM archivo_empleado ORDER BY  fecha_pago DESC;");
+            break;
+        }
         if($datos->filas($sql)>0){
         $archivos = "";
+
           while($contexto = $datos->recorrer($sql)){
             $this->crearFila($contexto);
           }

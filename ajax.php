@@ -26,6 +26,9 @@ if ($_POST) {
     case 'activarvisto':
       require('raiz/logica/ajax/activarVisto.php');
       break;
+    case 'buscararchivos':
+      require('raiz/logica/ajax/buscarArchivos.php');
+      break;
     default:
       header('location: index.php');
       break;

@@ -13,7 +13,7 @@
   class Conexion extends mysqli {
 
     /**
-    * @access private
+    * @access public
     * Accedemos al contructor de la clase mysqli
     * creamos la conexión a la bd
     *

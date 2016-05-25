@@ -2,7 +2,8 @@ function iniciarAutenticacion() {
   var conexion, formulario, respuesta, resultado, clave, usuario, sesion;
   usuario = __('usuario').value;
   clave = __('clave').value;
-  sesion = __('clave').checked ? true : false;
+  sesion = __('sesion').checked ? true : false;
+
 
   formulario = 'usuario=' + usuario + '&clave=' + clave +'&sesion=' + sesion;
   conexion = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

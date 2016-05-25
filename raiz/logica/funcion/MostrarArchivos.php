@@ -199,38 +199,67 @@ class MostrarArchivos{
     * $rfc del usuario y su respectivo $permiso
     *
     **/
-    public function verArchivos($rfc, $permiso){
+    public function verArchivos($rfc, $permiso, $parametro, $peticion){
       $datos = new Conexion();
+
       if($permiso==0){
-        $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_receptor='$rfc';");
+        switch ($peticion) {
+          case 1:
+            $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_receptor='$rfc' AND (nombre_xml LIKE '%$parametro%' OR rfc_receptor LIKE '%$parametro%' OR fecha_pago LIKE '%$parametro%');");
+            break;
+
+          default:
+            $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_receptor='$rfc';");
+            break;
+        }
         if($datos->filas($sql)>0){
           $archivos = "";
           while($contexto = $datos->recorrer($sql)){
             $this->crearDetalle($contexto);
           }
         } else {
-          echo'<div class="alert alert-info" role="alert"><strong>No existen archivos</strong>, Actualmente.</div>';
+          echo'<div class="alert alert-info" role="alert"><strong>No se encontraron archivos</strong> :( </div>';
         }
       } else if ($permiso==1) {
-        $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc';");
+        switch ($peticion) {
+          case 1:
+            $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc' AND (rfc_responsable  LIKE '%$parametro%' OR rfc_receptor  LIKE '%$parametro%' OR nombre_xml LIKE '%$parametro%' OR fecha_pago LIKE '%$parametro%');");
+            break;
+
+          default:
+            $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc';");
+            break;
+        }
+
         if($datos->filas($sql)>0){
         $archivos = "";
           while($contexto = $datos->recorrer($sql)){
             $this->crearDetalle($contexto);
           }
         } else {
-          echo'<div class="alert alert-info" role="alert"><strong>No existen archivos</strong>, Actualmente.</div>';
+          echo'<div class="alert alert-info" role="alert"><strong>No se encontraron archivos</strong> :( </div>';
+
         }
 
       } else{
-          $sql = $datos->query("SELECT * FROM archivo_empleado;");
+        switch ($peticion) {
+          case 1:
+            $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable LIKE '%$parametro%' OR rfc_receptor LIKE '%$parametro%' OR nombre_xml LIKE '%$parametro%' OR fecha_pago LIKE '%$parametro%';");
+            break;
+
+          default:
+          # code...
+            $sql = $datos->query("SELECT * FROM archivo_empleado;");
+            break;
+        }
           if($datos->filas($sql)>0){
           $archivos = "";
             while($contexto = $datos->recorrer($sql)){
               $this->crearDetalle($contexto);
             }
         } else {
-          echo'<div class="alert alert-info" role="alert"><strong>No existen archivos</strong>, Actualmente.</div>';
+          echo'<div class="alert alert-info" role="alert"><strong>No se encontraron archivos</strong> :( </div>';
+
         }
       }
       $datos->liberar($sql);
