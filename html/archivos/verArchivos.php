@@ -4,8 +4,8 @@
       <h1 class="page-header">Ver Archivos </h1>
     </div>
   </div>
-  <form role="form"">
 
+  <form role="form">
     <div class="row">
       <div class="col-lg-8">
         <div class="input-group">
@@ -16,8 +16,6 @@
         </div>
       </div>
     </div>
-
-
   </form>
   </br>
 
@@ -34,6 +32,8 @@
         $peticion=0;
         $verXML = new MostrarArchivos();
         $verXML->verArchivos($rfc, $tmp_permiso, $parametro, $peticion);
+        #print_r($_SESSION['descargar']);
+
       ?>
       </div>
     </div>

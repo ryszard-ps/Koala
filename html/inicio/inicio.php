@@ -16,16 +16,19 @@
               <div class="col-xs-9 text-right">
                 <div class="small">
                   <h2>
-                    <?php $estadistica->archivosTodos($rfc,$tmp_permiso); ?>
+                    <?php
+                      $total = $estadistica->archivosTodos($rfc,$tmp_permiso);
+                      echo $total;
+                   ?>
                   </h2>
                 </div>
-                <div>Ver Todos</div>
+                <div>Total de archivos</div>
               </div>
             </div>
           </div>
-          <a href="#">
+          <a href="?vista=verarchivos">
             <div class="panel-footer">
-              <span class="pull-left">Detalles</span>
+              <span class="pull-left">Ver Archivos</span>
               <span class="pull-right">
                 <i class="fa fa-arrow-circle-right"></i>
               </span>
@@ -45,7 +48,11 @@
               <div class="col-xs-9 text-right">
                 <div class="small">
                   <h2>
-                    <?php $estadistica->archivosVistosDescargados($rfc,$tmp_permiso); ?>
+                    <?php
+                      $vd = $estadistica->archivosVistosDescargados($rfc,$tmp_permiso);
+                      $vdp = ($vd > 0) ? ($total/$vd)*100 : $vd ;
+                      echo $vdp, " %";
+                     ?>
                   </h2>
                 </div>
                 <div>Vistos y Descargados</div>
@@ -54,9 +61,8 @@
           </div>
           <a href="#">
             <div class="panel-footer">
-              <span class="pull-left">Detalles</span>
-              <span class="pull-right">
-                <i class="fa fa-arrow-circle-right"></i>
+              <span class="pull-left">Total</span>
+              <span class="pull-right"><?php echo $vd ?>
               </span>
               <div class="clearfix">
               </div>
@@ -75,7 +81,11 @@
               <div class="col-xs-9 text-right">
                 <div class="small">
                   <h2>
-                    <?php $estadistica->archivosVistosODescargados($rfc,$tmp_permiso); ?>
+                    <?php
+                      $vod = $estadistica->archivosVistosODescargados($rfc,$tmp_permiso);
+                      $vodp = ($vod > 0) ? ($total/$vod)*100 : $vod ;
+                      echo $vodp, " %";
+                   ?>
                   </h2>
                 </div>
                 <div>Vistos o Descargas</div>
@@ -84,9 +94,8 @@
           </div>
           <a href="#">
             <div class="panel-footer">
-              <span class="pull-left">Detalles</span>
-              <span class="pull-right">
-                <i class="fa fa-arrow-circle-right"></i>
+              <span class="pull-left">Total</span>
+              <span class="pull-right"><?php echo $vod; ?>
               </span>
               <div class="clearfix">
               </div>
@@ -104,7 +113,11 @@
               <div class="col-xs-9 text-right">
                 <div class="small">
                   <h2>
-                    <?php $estadistica->archivosSinAcciones($rfc,$tmp_permiso); ?>
+                    <?php
+                      $sa = $estadistica->archivosSinAcciones($rfc,$tmp_permiso);
+                      $sap = ($sa > 0) ? ($total/$sa)*100 : $sa ;
+                      echo $sap, " %";
+                    ?>
                   </h2>
                 </div>
                 <div>Sin Acciones</div>
@@ -113,9 +126,8 @@
           </div>
           <a href="#">
             <div class="panel-footer">
-              <span class="pull-left">Detalles</span>
-              <span class="pull-right">
-                <i class="fa fa-arrow-circle-right"></i>
+              <span class="pull-left">Total</span>
+              <span class="pull-right"><?php echo $sa; ?>
               </span>
               <div class="clearfix">
               </div>

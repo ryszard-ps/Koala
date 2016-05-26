@@ -2,44 +2,44 @@
   <div class="tab-content col-lg-12">
     <form action="?vista=reporte" method="POST">
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="a.rfc_receptor" name="datos[]" checked="checked">RFC Empleado</label>
+        <label class="checkbox-inline"><input type="checkbox" value="rfc_receptor" name="datos[]" checked="checked">RFC Empleado</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="a.nombre_xml" name="datos[]" checked="checked">Nombre XML</label>
+        <label class="checkbox-inline"><input type="checkbox" value="nombre_xml" name="datos[]" checked="checked">Nombre XML</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="a.fecha_pago" name="datos[]" checked="checked">Fecha de pago</label>
+        <label class="checkbox-inline"><input type="checkbox" value="fecha_pago" name="datos[]" checked="checked">Fecha de pago</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="a.visto" name="datos[]" checked="checked">Visto</label>
+        <label class="checkbox-inline"><input type="checkbox" value="visto" name="datos[]" checked="checked">Visto</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="a.descargado" name="datos[]" checked="checked">Descargado</label>
+        <label class="checkbox-inline"><input type="checkbox" value="descargado" name="datos[]" checked="checked">Descargado</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="a.rfc_responsable" name="datos[]" checked="checked">RFC Responsable</label>
+        <label class="checkbox-inline"><input type="checkbox" value="rfc_responsable" name="datos[]" checked="checked">RFC Responsable</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="e.nombres" name="datos[]" checked="checked">Nombre del Empleado</label>
+        <label class="checkbox-inline"><input type="checkbox" value="nombres" name="datos[]" checked="checked">Nombre del Empleado</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="e.apellido_p" name="datos[]" checked="checked">Apellido paterno</label>
+        <label class="checkbox-inline"><input type="checkbox" value="apellido_p" name="datos[]" checked="checked">Apellido paterno</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="e.apellido_m" name="datos[]" checked="checked">Apellido materno</label>
+        <label class="checkbox-inline"><input type="checkbox" value="apellido_m" name="datos[]" checked="checked">Apellido materno</label>
       </div>
 
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="e.curp" name="datos[]" checked="checked">CURP</label>
+        <label class="checkbox-inline"><input type="checkbox" value="curp" name="datos[]" checked="checked">CURP</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="e.nss" name="datos[]" checked="checked">No. de Seguro Social</label>
+        <label class="checkbox-inline"><input type="checkbox" value="nss" name="datos[]" checked="checked">No. de Seguro Social</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="e.puesto" name="datos[]" checked="checked">Puesto</label>
+        <label class="checkbox-inline"><input type="checkbox" value="puesto" name="datos[]" checked="checked">Puesto</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="e.departamento" name="datos[]" checked="checked">Departamento</label>
+        <label class="checkbox-inline"><input type="checkbox" value="departamento" name="datos[]" checked="checked">Departamento</label>
       </div>
 
 

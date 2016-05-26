@@ -68,11 +68,13 @@ class MostrarArchivos{
         }else{
           $visto='<button id="visto" type="button" class="btn btn-warning" data-toggle="modal" data-target="#ver" onclick="verArchivo()">No Visto</button>';
         }
+        $ruta = $contexto['nombre_xml'];
+#        $ruta . =".xml";
         if($contexto['descargado']==1){
-          $descarga = '<input type="hidden" name="archivo" value="' . $contexto['nombre_xml'] . '">
+          $descarga = '<input type="hidden" name="archivo" value="' . $ruta . '">
             <button type="submit" class="btn btn-info">Descargado</button>';
         }else{
-          $descarga = '<input type="hidden" name="archivo" value="' . $contexto['nombre_xml'] . '">
+          $descarga = '<input type="hidden" name="archivo" value="' . $ruta . '">
             <button type="submit" class="btn btn-warning">No Descargado</button>';
         }
 

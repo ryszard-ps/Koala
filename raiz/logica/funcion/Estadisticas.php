@@ -5,15 +5,15 @@ class Estadisticas{
     if($permiso==0){
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE rfc_receptor='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     } else if($permiso==1) {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE rfc_responsable='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return $cantidad;
     } else {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado;");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     }
     $datos->liberar($sql);
     $datos->close();
@@ -24,16 +24,16 @@ class Estadisticas{
     if($permiso==0){
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=1 AND visto=1) AND rfc_receptor='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     } else if($permiso==1) {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=1 AND visto=1) AND rfc_responsable='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
 
-      echo $cantidad;
+      return $cantidad;
     } else {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE descargado=1 AND visto=1;");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     }
     $datos->liberar($sql);
     $datos->close();
@@ -44,15 +44,15 @@ class Estadisticas{
     if($permiso==0){
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=1 OR visto=1) AND rfc_receptor='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     } else if($permiso==1) {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=1 OR visto=1) AND rfc_responsable='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     } else {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE descargado=1 OR visto=1;");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return $cantidad;
     }
     $datos->liberar($sql);
     $datos->close();
@@ -63,15 +63,15 @@ class Estadisticas{
     if($permiso==0){
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=0 AND visto=0) AND rfc_receptor='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     } else if($permiso==1) {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=0 AND visto=0) AND rfc_responsable='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     } else {
       $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE descargado=0 AND visto=0;");
       $cantidad=$datos->recorrer($sql)[0];
-      echo $cantidad;
+      return  $cantidad;
     }
     $datos->liberar($sql);
     $datos->close();

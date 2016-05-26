@@ -1,7 +1,6 @@
 function buscarArchivos() {
   var conexion, formulario, respuesta, resultado, palabra;
   palabra = __('buscar').value;
-  console.log(palabra);
 
   formulario = 'palabra=' + palabra;
   conexion = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');

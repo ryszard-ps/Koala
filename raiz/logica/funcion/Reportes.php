@@ -1,11 +1,9 @@
 <?php
-header("Content-type: application/vnd.ms-excel");
-header("Content-type: application/vnd.ms-word");
 require('dompdf/dompdf_config.inc.php');
 if(empty($_POST["datos"])){
-  echo "Error, privilegios no validos";
-  #header("Location:error-index.html");
+  header("Location:?vista=recurso");
 }
+
 $tabla="Archivos";
 $campos="";
 $sql="";
@@ -51,20 +49,20 @@ $count=count($datos);
   $consulta = $conexion->query($sql);
 
 $codigoHTML='
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Reportes</title>
-</head>
 <body> <div align="center">
 <h1 style="color:#819ff7">Reporte de '.$tabla.'</h1>
-<table class="table table-bordered" align="center"  border="1">
+
+<div>
+
+
+  <div>
+    <table border="1" align="center">
+      <thead>
 
 	<tr>';
 		for ($i=0; $i <$count ; $i++) {
 $codigoHTML.='
-		<th>'.$datos[$i].'</th>';
+		<th  align="center"><font face="Geneva, Arial" size=2>'.$datos[$i].'</font></th>';
 	 }
 $codigoHTML.='</tr>';
 
@@ -72,11 +70,18 @@ $codigoHTML.='</tr>';
 $codigoHTML.='
 		<tr>';
 			for ($i=0; $i <$count ; $i++) {
-$codigoHTML.='<td>'.$res[$i].'</td>';
+$codigoHTML.='<td  align="center"><font face="Geneva, Arial" size=1>'.$res[$i].'</font></td>';
 			}
 $codigoHTML.='</tr>';
 		}
 $codigoHTML.='
+</thead>
+<tbody>
+
+</tbody>
+</table>
+</div>
+</div>
 </table>
 </div>
 </div>
@@ -86,22 +91,27 @@ $codigoHTML.='
 
 if ($documento=="pdf"){
   $nombre = "Reporte de ".$tabla.".pdf";
-  $codigoHTML=utf8_encode($codigoHTML);
-  $dompdf=new DOMPDF();
-  $dompdf->load_html($codigoHTML);
-  ini_set("memory_limit","128M");
-  $dompdf->set_paper ('a4','landscape'); 
-  $dompdf->render();
-  $dompdf->stream($nombre);
-  #'portrait' or 'landscape'
+  $dompdf = new DOMPDF();
+  $dompdf->set_paper("A4", "landscape");
 
+  // load the html content
+  $dompdf->load_html($codigoHTML);
+
+  $dompdf->render();
+  $canvas = $dompdf->get_canvas();
+  $font = Font_Metrics::get_font("helvetica", "bold");
+  $canvas->page_text(16, 800, "Page: {PAGE_NUM} of {PAGE_COUNT}", $font, 8, array(0,0,0));
+  $dompdf->stream($nombre,array("Attachment"=>0));
 } else if($documento=="excel"){
+  header("Content-type: application/vnd.ms-excel");
   $nombre = "Reporte de ".$tabla.".xls";
   header("Content-Disposition: attachment; filename=".$nombre);
   echo utf8_encode($codigoHTML) ;
 } else if($documento =="word"){
-  $nombre = "Reporte de ".$tabla.".doc";
+  header("Content-type: application/vnd.ms-word");
+  $nombre = "Reporte de ".$tabla.".docx";
   header("Content-Disposition: attachment; filename=".$nombre);
   echo utf8_encode($codigoHTML) ;
 }
+
 ?>
