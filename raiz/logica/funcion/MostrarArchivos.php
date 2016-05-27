@@ -14,7 +14,7 @@ class MostrarArchivos{
     * A esta clase no puede ser accedida desde otra clase o desde otro lugar
     *
     **/
-    private function crearDetalle($contexto){
+    private function crearDetalle($contexto,$contador){
         $ruta = 'archivos/' . $contexto['nombre_xml'] . ".xml";
         $sxe = simplexml_load_file($ruta);
         $ns = $sxe->getNamespaces(true);
@@ -38,14 +38,6 @@ class MostrarArchivos{
           $xml_emisor_rfc =$cfdi['rfc'];
         }
 
-        foreach ($sxe->xpath('//c:DomicilioFiscal') as $cfdi) {
-          $xml_dom_fiscal_pais =$cfdi['pais'];
-          $xml_dom_fiscal_cp =$cfdi['codigoPostal'];
-          $xml_dom_fiscal_estado =$cfdi['estado'];
-          $xml_dom_fiscal_municipio =$cfdi['municipio'];
-          $xml_dom_fiscal_colonia =$cfdi['colonia'];
-        }
-
         foreach ($sxe->xpath('//c:Receptor') as $cfdi) {
           $xml_receptor_nombre=$cfdi['nombre'];
           $xml_receptor_rfc=$cfdi['rfc'];
@@ -53,28 +45,26 @@ class MostrarArchivos{
 
         foreach ($sxe->xpath('//n:Nomina') as $cfdi) {
             $xml_nomina_periodicidad=$cfdi['PeriodicidadPago'];
-            $xml_nomina_puesto=$cfdi['Puesto'];
-            $xml_nomina_dpto=$cfdi['Departamento'];
+            $xml_nomina_puesto = (empty($cfdi['Puesto'])) ? "Sin Datos" : $cfdi['Puesto'] ;
+            $xml_nomina_dpto=(empty($cfdi['Departamento'])) ? "Sin Datos" : $cfdi['Departamento'] ;
             $xml_nomina_dias_pagados=$cfdi['NumDiasPagados'];
             $xml_nomina_fin_pago=$cfdi['FechaFinalPago'];
             $xml_nomina_inicio_pago=$cfdi['FechaInicialPago'];
             $xml_nomina_fecha_pago=$cfdi['FechaPago'];
-            $xml_nomina_ss=$cfdi['NumSeguridadSocial'];
+            $xml_nomina_ss=(empty($cfdi['NumSeguridadSocial'])) ? "Sin Datos" : $cfdi['NumSeguridadSocial'] ;
             $xml_nomina_curp=$cfdi['CURP'];
         }
 
         if($contexto['visto']==1){
-          $visto='<button id="visto" type="button" class="btn btn-info" data-toggle="modal" data-target="#ver">Visto</button>';
+          $visto='<button id="visto'.$contador.'" type="button" class="btn btn-info" data-toggle="modal" data-target="#ver'.$contador.'">Visto</button>';
         }else{
-          $visto='<button id="visto" type="button" class="btn btn-warning" data-toggle="modal" data-target="#ver" onclick="verArchivo()">No Visto</button>';
+          $visto='<button id="visto'.$contador.'" type="button" class="btn btn-warning" data-toggle="modal" data-target="#ver'.$contador.'" onclick="verArchivo('.$contador.')">No Visto</button>';
         }
-        $ruta = $contexto['nombre_xml'];
-#        $ruta . =".xml";
         if($contexto['descargado']==1){
-          $descarga = '<input type="hidden" name="archivo" value="' . $ruta . '">
+          $descarga = '<input type="hidden" name="archivo" value="' . $contexto['nombre_xml'] . '">
             <button type="submit" class="btn btn-info">Descargado</button>';
         }else{
-          $descarga = '<input type="hidden" name="archivo" value="' . $ruta . '">
+          $descarga = '<input type="hidden" name="archivo" value="' . $contexto['nombre_xml'] . '">
             <button type="submit" class="btn btn-warning">No Descargado</button>';
         }
 
@@ -99,7 +89,7 @@ class MostrarArchivos{
                       <div class="small"><h5>Fecha de pago: ',$contexto['fecha_pago'],'</h5></div>
                     </div>
                     <div class="col-xs-12 text-right">
-                      <div class="small" ><h6 id="xml">',$contexto['nombre_xml'],'</h6></div>
+                      <div class="small" ><h6 id="xml'.$contador.'">',$contexto['nombre_xml'],'</h6></div>
                     </div>
 
                     <div class="col-xs-12 text-center">
@@ -109,7 +99,7 @@ class MostrarArchivos{
                     </div>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="ver" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="ver'.$contador.'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -124,16 +114,6 @@ class MostrarArchivos{
                                   <dd>',$xml_emisor_nombre,'</dd>
                                   <dt>RFC:</dt>
                                   <dd>',$xml_emisor_rfc,'</dd>
-                                  <dt>País:</dt>
-                                  <dd>',$xml_dom_fiscal_pais,'</dd>
-                                  <dt>C.P:</dt>
-                                  <dd>',$xml_dom_fiscal_cp,'</dd>
-                                  <dt>Estado:</dt>
-                                  <dd>',$xml_dom_fiscal_estado,'</dd>
-                                  <dt>Municipio:</dt>
-                                  <dd>',$xml_dom_fiscal_municipio,'</dd>
-                                  <dt>Colonia:</dt>
-                                  <dd>',$xml_dom_fiscal_colonia,'</dd>
                                 </dl>
                               </div>
 
@@ -193,6 +173,7 @@ class MostrarArchivos{
                   </div>
                 </div>
               </div>';
+
     }
 
     /**
@@ -203,7 +184,6 @@ class MostrarArchivos{
     **/
     public function verArchivos($rfc, $permiso, $parametro, $peticion){
       $datos = new Conexion();
-
       if($permiso==0){
         switch ($peticion) {
           case 1:
@@ -215,9 +195,9 @@ class MostrarArchivos{
             break;
         }
         if($datos->filas($sql)>0){
-          $archivos = "";
+          $contador=0;
           while($contexto = $datos->recorrer($sql)){
-            $this->crearDetalle($contexto);
+            $this->crearDetalle($contexto, $contador++);
           }
         } else {
           echo'<div class="alert alert-info" role="alert"><strong>No se encontraron archivos</strong> :( </div>';
@@ -227,22 +207,19 @@ class MostrarArchivos{
           case 1:
             $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc' AND (rfc_responsable  LIKE '%$parametro%' OR rfc_receptor  LIKE '%$parametro%' OR nombre_xml LIKE '%$parametro%' OR fecha_pago LIKE '%$parametro%');");
             break;
-
           default:
             $sql = $datos->query("SELECT * FROM archivo_empleado WHERE rfc_responsable='$rfc';");
             break;
         }
-
         if($datos->filas($sql)>0){
-        $archivos = "";
+          $contador=0;
           while($contexto = $datos->recorrer($sql)){
-            $this->crearDetalle($contexto);
+            $this->crearDetalle($contexto, $contador++);
           }
         } else {
           echo'<div class="alert alert-info" role="alert"><strong>No se encontraron archivos</strong> :( </div>';
 
         }
-
       } else{
         switch ($peticion) {
           case 1:
@@ -250,18 +227,16 @@ class MostrarArchivos{
             break;
 
           default:
-          # code...
             $sql = $datos->query("SELECT * FROM archivo_empleado;");
             break;
         }
           if($datos->filas($sql)>0){
-          $archivos = "";
+            $contador=0;
             while($contexto = $datos->recorrer($sql)){
-              $this->crearDetalle($contexto);
+              $this->crearDetalle($contexto, $contador++);
             }
         } else {
           echo'<div class="alert alert-info" role="alert"><strong>No se encontraron archivos</strong> :( </div>';
-
         }
       }
       $datos->liberar($sql);

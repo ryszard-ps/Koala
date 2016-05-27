@@ -5,16 +5,16 @@
         <label class="checkbox-inline"><input type="checkbox" value="rfc_receptor" name="datos[]" checked="checked">RFC Empleado</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="nombre_xml" name="datos[]" checked="checked">Nombre XML</label>
+        <label class="checkbox-inline"><input type="checkbox" value="nombre_xml" name="datos[]" checked="checked">UUID</label>
       </div>
       <div class="checkbox">
         <label class="checkbox-inline"><input type="checkbox" value="fecha_pago" name="datos[]" checked="checked">Fecha de pago</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="visto" name="datos[]" checked="checked">Visto</label>
+        <label class="checkbox-inline"><input type="checkbox" value="fecha_visto" name="datos[]" checked="checked">Visto</label>
       </div>
       <div class="checkbox">
-        <label class="checkbox-inline"><input type="checkbox" value="descargado" name="datos[]" checked="checked">Descargado</label>
+        <label class="checkbox-inline"><input type="checkbox" value="fecha_descarga" name="datos[]" checked="checked">Descargado</label>
       </div>
       <div class="checkbox">
         <label class="checkbox-inline"><input type="checkbox" value="rfc_responsable" name="datos[]" checked="checked">RFC Responsable</label>

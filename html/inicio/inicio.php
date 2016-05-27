@@ -50,8 +50,8 @@
                   <h2>
                     <?php
                       $vd = $estadistica->archivosVistosDescargados($rfc,$tmp_permiso);
-                      $vdp = ($vd > 0) ? ($total/$vd)*100 : $vd ;
-                      echo $vdp, " %";
+                      $vdp = ($vd > 0) ? ($vd*100)/$total : $vd ;
+                      echo round($vdp), " %";
                      ?>
                   </h2>
                 </div>
@@ -75,27 +75,27 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col-xs-3">
-                <i class="fa  fa-star-half fa-4x">
+                <i class="fa fa-eye fa-4x">
                 </i>
               </div>
               <div class="col-xs-9 text-right">
                 <div class="small">
                   <h2>
                     <?php
-                      $vod = $estadistica->archivosVistosODescargados($rfc,$tmp_permiso);
-                      $vodp = ($vod > 0) ? ($total/$vod)*100 : $vod ;
-                      echo $vodp, " %";
-                   ?>
+                      $v = $estadistica->archivosAccion($rfc,$tmp_permiso,"visto");
+                      $vp = ($v > 0) ? ($v*100)/$total : $v ;
+                      echo round($vp),' %';
+                    ?>
                   </h2>
                 </div>
-                <div>Vistos o Descargas</div>
+                <div>Vistos</div>
               </div>
             </div>
           </div>
           <a href="#">
             <div class="panel-footer">
               <span class="pull-left">Total</span>
-              <span class="pull-right"><?php echo $vod; ?>
+              <span class="pull-right"><?php echo $v; ?>
               </span>
               <div class="clearfix">
               </div>
@@ -108,26 +108,26 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col-xs-3">
-                <i class="fa fa-star-o fa-4x"></i>
+                <i class="fa fa-arrow-circle-o-down fa-4x"></i>
               </div>
               <div class="col-xs-9 text-right">
                 <div class="small">
                   <h2>
                     <?php
-                      $sa = $estadistica->archivosSinAcciones($rfc,$tmp_permiso);
-                      $sap = ($sa > 0) ? ($total/$sa)*100 : $sa ;
-                      echo $sap, " %";
+                      $d = $estadistica->archivosAccion($rfc,$tmp_permiso,"descargado");
+                      $dp = ($d > 0) ? ($d*100)/$total : $d ;
+                      echo round($dp),' %';
                     ?>
                   </h2>
                 </div>
-                <div>Sin Acciones</div>
+                <div>Descargados</div>
               </div>
             </div>
           </div>
           <a href="#">
             <div class="panel-footer">
               <span class="pull-left">Total</span>
-              <span class="pull-right"><?php echo $sa; ?>
+              <span class="pull-right"><?php echo $d; ?>
               </span>
               <div class="clearfix">
               </div>

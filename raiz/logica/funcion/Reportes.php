@@ -49,35 +49,36 @@ $count=count($datos);
   $consulta = $conexion->query($sql);
 
 $codigoHTML='
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte</title>
+</head>
 <body> <div align="center">
 <h1 style="color:#819ff7">Reporte de '.$tabla.'</h1>
-
 <div>
-
-
   <div>
     <table border="1" align="center">
       <thead>
-
 	<tr>';
 		for ($i=0; $i <$count ; $i++) {
 $codigoHTML.='
 		<th  align="center"><font face="Geneva, Arial" size=2>'.$datos[$i].'</font></th>';
 	 }
 $codigoHTML.='</tr>';
-
 		while($res = $conexion->recorrer($consulta)){
 $codigoHTML.='
 		<tr>';
 			for ($i=0; $i <$count ; $i++) {
-$codigoHTML.='<td  align="center"><font face="Geneva, Arial" size=1>'.$res[$i].'</font></td>';
+        $campo = (empty($res[$i])) ? "Sin Datos" : $res[$i] ;
+$codigoHTML.='<td  align="center"><font face="Geneva, Arial" size=1>'.$campo.'</font></td>';
 			}
 $codigoHTML.='</tr>';
 		}
 $codigoHTML.='
 </thead>
 <tbody>
-
 </tbody>
 </table>
 </div>

@@ -13,5 +13,6 @@
     $datos = new Conexion();
     $contexto = $datos->real_escape_string($_POST['contenido']);
     $sql = $datos->query("UPDATE archivo_empleado SET visto = 1, fecha_visto=NOW() WHERE nombre_xml='$contexto';");
+    echo 1;
   }
 ?>

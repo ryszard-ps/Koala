@@ -39,18 +39,18 @@ class Estadisticas{
     $datos->close();
   }
 
-  function archivosVistosODescargados($rfc, $permiso){
+  function archivosAccion($rfc, $permiso, $campo){
     $datos = new Conexion();
     if($permiso==0){
-      $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=1 OR visto=1) AND rfc_receptor='$rfc';");
+      $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE $campo=1 AND rfc_receptor='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
       return  $cantidad;
     } else if($permiso==1) {
-      $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE (descargado=1 OR visto=1) AND rfc_responsable='$rfc';");
+      $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE $campo=1 AND rfc_responsable='$rfc';");
       $cantidad=$datos->recorrer($sql)[0];
       return  $cantidad;
     } else {
-      $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE descargado=1 OR visto=1;");
+      $sql = $datos->query("SELECT count(id) FROM archivo_empleado WHERE $campo=1;");
       $cantidad=$datos->recorrer($sql)[0];
       return $cantidad;
     }

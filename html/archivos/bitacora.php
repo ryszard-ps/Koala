@@ -20,7 +20,7 @@
       <thead>
         <tr>
           <th class="text-center">RFC</th>
-          <th class="text-center">XML</th>
+          <th class="text-center">UUID</th>
           <th class="text-center">Fecha de Pago</th>
           <th class="text-center">Visto</th>
           <th class="text-center">Descargado</th>

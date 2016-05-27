@@ -34,7 +34,7 @@ class Archivos{
           $nombre .= $datos_empleado[$i]." ";
         }
       }
-      $clave=SHA1($ss);
+      $clave=SHA1($curp);
       $datos->query("INSERT INTO empleado(rfc,nombres,apellido_p,apellido_m,curp,nss,puesto,departamento,clave) VALUES ('$receptor_rfc','$nombre','$apellido_paterno','$apellido_materno','$curp','$ss','$puesto','$dpto','$clave');");
       $datos->query("INSERT INTO archivo_empleado(rfc_responsable,rfc_receptor, sueldo, nombre_xml,fecha_pago) VALUES ('$usuario','$receptor_rfc','$sueldo','$uuid','$fecha_fin');");
       $info="Se agrego nuevo empleado RFC: " . $receptor_rfc." Nombre: ".$receptor_nombre;
@@ -46,4 +46,4 @@ class Archivos{
     $datos->close();
   }
 }
- ?>
+?>

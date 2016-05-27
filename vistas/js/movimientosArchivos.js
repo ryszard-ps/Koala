@@ -1,10 +1,14 @@
-function verArchivo() {
+function verArchivo(contador) {
   var conexion, formulario, respuesta, resultado, archivos;
-  var xml = document.getElementById('xml');
+  str0="";
+  var xmlv =str0.concat("xml",contador);
+  var xml = document.getElementById(xmlv);
   var contenido = xml.innerHTML;
-  var boton = document.getElementById('visto');
-  var estado= boton.innerHTML;
-  formulario = 'contenido=' + contenido + '&estado=' + estado;
+  var str1="";
+  var elementos=str1.concat("visto",contador);
+  var boton = document.getElementById(elementos);
+  var estado = boton.innerHTML;
+  formulario = 'contenido=' + contenido;
   if(estado!='Visto'){
     conexion = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     conexion.onreadystatechange = function(){

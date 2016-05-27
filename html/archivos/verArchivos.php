@@ -32,8 +32,6 @@
         $peticion=0;
         $verXML = new MostrarArchivos();
         $verXML->verArchivos($rfc, $tmp_permiso, $parametro, $peticion);
-        #print_r($_SESSION['descargar']);
-
       ?>
       </div>
     </div>
