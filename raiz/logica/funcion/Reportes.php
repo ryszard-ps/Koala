@@ -55,11 +55,23 @@ $codigoHTML='
   <meta charset="UTF-8">
   <title>Reporte</title>
 </head>
-<body> <div align="center">
-<h1 style="color:#819ff7">Reporte de '.$tabla.'</h1>
+<body>
+<div align="center">
+  <table class="row" align="center"  >
+    <thead>
+      <tr>
+        <th align="left">
+      <img src="vistas/imagenes/logo.png" border="0" width="190" height="90">
+      </th>
+      <th >
+      <h1 style="color:#819ff7">Reporte de '.$tabla.'</h1>
+      </th>
+      </tr>
+    </thead>
+  </table>
 <div>
   <div>
-    <table border="1" align="center">
+      <table border="1" align="center">
       <thead>
 	<tr>';
 		for ($i=0; $i <$count ; $i++) {
@@ -91,6 +103,7 @@ $codigoHTML.='
 #echo utf8_encode($codigoHTML) ;
 
 if ($documento=="pdf"){
+  #$pdf->page_text(765, 550, "Pagina {PAGE_NUM} de {PAGE_COUNT}", $font, 9, array(0, 0, 0));
   $nombre = "Reporte de ".$tabla.".pdf";
   $dompdf = new DOMPDF();
   $dompdf->set_paper("A4", "landscape");
@@ -101,7 +114,8 @@ if ($documento=="pdf"){
   $dompdf->render();
   $canvas = $dompdf->get_canvas();
   $font = Font_Metrics::get_font("helvetica", "bold");
-  $canvas->page_text(16, 800, "Page: {PAGE_NUM} of {PAGE_COUNT}", $font, 8, array(0,0,0));
+  $canvas->page_text(390, 555, "Página: {PAGE_NUM} de {PAGE_COUNT}", $font, 9, array(0,0,0));
+  $canvas->page_text(610, 555, FECHA , $font, 9, array(0,0,0));
   $dompdf->stream($nombre,array("Attachment"=>0));
 } else if($documento=="excel"){
   header("Content-type: application/vnd.ms-excel");

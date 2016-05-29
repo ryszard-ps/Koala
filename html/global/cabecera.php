@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> <?php TITULO_APP ?> </title>
+    <title><  Koala /> <?php TITULO_APP ?> </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vistas/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
